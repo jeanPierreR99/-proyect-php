@@ -1,4 +1,5 @@
 function add_products() {
+    
     var datos = new FormData($('#products')[0]);
     $.ajax({
         type: "POST",
@@ -11,7 +12,6 @@ function add_products() {
                 alert("algoe sta fallando");
             }
             else {
-            
                 $('#cargar-products').load('../php/ajax-load-products.php');
             }
         }
@@ -29,7 +29,6 @@ function delete_products(cod) {
                 alert("algoe sta fallando");
             }
             else {
-            
                 $('#cargar-products').load('../php/ajax-load-products.php');
             }
         }
@@ -47,7 +46,6 @@ function delete_users(cod) {
                alert("algoe sta fallando");
            }
            else {
-               alert("eliminado: "+cod);
                $('#cargar-users').load('../php/ajax-load-user.php');
                $('#table-user').DataTable();
            }
@@ -55,23 +53,40 @@ function delete_users(cod) {
    });
 }
 
-function aceptar_pedido(cod) {
+function aceptar_pedido(cod,fecha) {
 
     $.ajax({
        type: "GET",
        url: "../php/aceptar-pedido.php",
-       data: {cod},
+       data: {cod,fecha},
        success: function (r) {
            if (r == 1) {
                alert("algoe sta fallando");
            }
            else {
-           
             $('#content-pedidos').load('../php/ajax-load-pedidos.php');
            }
        }
    });
 }
+
+function cancelar_pedido(cod,fecha) {
+
+    $.ajax({
+       type: "GET",
+       url: "../php/cancelar-pedido.php",
+       data: {cod,fecha},
+       success: function (r) {
+           if (r == 1) {
+               alert("algoe sta fallando");
+           }
+           else {
+            $('#content-pedidos').load('../php/ajax-load-pedidos.php');
+           }
+       }
+   });
+}
+
 function add_client(){
     var datos = $('#registro').serialize();
     $.ajax({

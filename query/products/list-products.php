@@ -38,11 +38,12 @@
         <div class="pro-container">   
         <?php while($render = mysqli_fetch_array($query)){ ?>
 <?php $valueSend = $render[0].",".$render[1].",".$render[2].",".$render[3].",".$render[4].",".$render[5].",".$render[6].",".$render[7]; ?>
-            <div class="pro">
-                <img src="uploads/<?php echo $render['url_image'];?>" alt="">
+            <div class="pro" style="height:400px">
+                <img style="height:60%" src="uploads/<?php echo $render['url_image'];?>" alt="">
                 <div class="des">
                     <span><?php echo $render['matiral'];?></span>
                     <h5><?php echo $render['name'];?></h5>
+                    <h5 style="height:40px !important; width:100%; overflow-y; font-weight: 400; font-size:11px"><?php echo $render['description'];?></h5>
                     <div class="star">
                         <?php 
                             $starts = $render['ranking']; 

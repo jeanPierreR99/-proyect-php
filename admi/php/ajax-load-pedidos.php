@@ -1,6 +1,11 @@
 <?php
-include("../php/conexion.php");
-
+include("conexion.php");
+session_start();
+if (isset($_SESSION['administrador'])) {
+} else {
+    header("location: ../../bloqueo.html");
+    die();
+}
 
 $nom = "";
 $num = 0;
@@ -29,8 +34,9 @@ $cont=0;
     <title>Document</title>
 </head>
 <body>
-    <?php
-    $consultap = "SELECT count(pd.id_products) as contador from pedido pd, client c where c.id = pd.id_user group by pd.fecha_pedido;";
+<div id="content-pedidos">
+<?php
+    $consultap = "SELECT count(pd.id_products) as contador from pedido pd, client c where c.id = pd.id_user and pd.estatus_pedido=1 group by pd.fecha_pedido;";
     $queryp = mysqli_query($conection, $consultap) or die("errrorrrrrrrrrrrrrrrrrrr datos");
 
     while ($mostrarp = mysqli_fetch_array($queryp)) {
@@ -40,10 +46,9 @@ $cont=0;
 <div class="count" style="width:200px; height:100px; border:1px rgb(211, 211, 211) solid;position:relative">
                 <span style="position:Absolute; top:50%;left:50%;transform:translate(-50%,-50%); color:rgb(134, 132, 132"><?php echo $cont?> pendientes</span>
             </div>
-<div id="content-pedidos">
 
     <?php
-            $consulta2 = "SELECT concat(c.name,' ',c.last_name) as nombre, pd.fecha_pedido, c.telefono, c.id from pedido pd, client c where c.id = pd.id_user group by pd.fecha_pedido;";
+            $consulta2 = "SELECT concat(c.name,' ',c.last_name) as nombre, pd.fecha_pedido, c.telefono, c.id from pedido pd, client c where c.id = pd.id_user and pd.estatus_pedido = 1 group by pd.fecha_pedido;";
 
             $query2 = mysqli_query($conection, $consulta2) or die("errrorrrrrrrrrrrrrrrrrrr datos");
 
@@ -59,7 +64,7 @@ $cont=0;
         <thead style="border: white; background:none !important;">
             <tr>
                 <th colspan="2" style="text-align:center;background: #006a47;color:white"><?php echo $nom . " (" . $hora . ")";?></th>
-                <th style="width:20px;height:20px;padding:0px;background: rgba(207, 205, 207, 0.972);"><button type="button"  style="background:none;border:none;width:100%;height:100%"><i class="bi bi-x-circle" style="font-size:20px; color: rgb(248, 7, 7)"></i></button></th>
+                <th style="width:20px;height:20px;padding:0px;background: rgba(207, 205, 207, 0.972);"><button type="button"  style="background:none;border:none;width:100%;height:100%" onclick="cancelar_pedido(<?php echo $id?>,'<?php echo $hora?>')"><i class="bi bi-x-circle" style="font-size:20px; color: rgb(248, 7, 7)"></i></button></th>
 
             </tr>
 
@@ -92,7 +97,7 @@ $cont=0;
         <tr>
             
             <td></td>
-            <td><button type="button" class="btn btn-success" onclick="aceptar_pedido(<?php echo $id?>);">aceptar</button></td>
+            <td><button type="button" class="btn btn-success" onclick="aceptar_pedido(<?php echo $id?>,'<?php echo $hora?>');">aceptar</button></td>
             <td></td>
         </tr>
         </tbody>
@@ -100,13 +105,8 @@ $cont=0;
  </form>
 
 <?php }?>
-   <script>
-    </div>
-    $(document).ready(function() {
-  $('#table-pedidos').DataTable();
-  $('#table-pedidos-cancelados').DataTable();
- } );
-  </script>
+       </div>
+   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>

@@ -1,21 +1,33 @@
 <?php
 
+class Response{
+    public $Status = 200;
+    public $Message = "ok";
+    public $Data;
+    public function __construct($status,$message,$data = null)
+    {
+        $this->Status = $status;
+        $this->Message = $message;
+        $this->Data = $data;
+    }
+}
+
 // include('connection.php');
+header("content-type: application/json; charset=utf-8");
 if($_SERVER['REQUEST_METHOD']!='POST'){
+    print_r(json_encode(new Response(404,"not found")));
     http_response_code(404);
     return;
 }
 
-// header("content-type: application/json; charset=utf-8");
 $body= file_get_contents("php://input");
 $dataJson=json_decode($body,true);
-// print_r(json_encode($dataJson));
-// http_response_code(201);
-echo count($dataJson);
+print_r(json_encode(new Response(201,"ok",$dataJson)));
+http_response_code(201);
+// echo count($dataJson);
+// echo $dataJson;
 
-for($i=0;$i<count($dataJson);$i++){
-    $stmt="INSERT INTO purchase VALUES(0,1,".$dataJson[$i]['id'].",".$dataJson[0]['date'].",)";
-}
-//id idclient idproduct datepurchase idstatuspurchase
-$stmt = "INSERT INTO usuario VALUES ('$iten7','$iten1','$iten2','$iten3','$iten4','$iten5','$iten6')";
-$query = mysqli_query($conectar, $stmt) or die ("errror datos");
+// for($i=0;$i<count($dataJson);$i++){
+//     $stmt="INSERT INTO pedido_guardado VALUES(0,5,".$dataJson[$i]['id'].",now())";
+//     $query = mysqli_query($conection, $stmt) or die ("errror datos");
+// }

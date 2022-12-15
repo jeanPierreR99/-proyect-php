@@ -1,5 +1,12 @@
 <?php
 include("../php/conexion.php");
+
+session_start();
+if (isset($_SESSION['administrador'])) {
+} else {
+    header("location: ../../bloqueo.html");
+    die();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,11 +40,11 @@ include("../php/conexion.php");
             </div>
             <div class="form-group">
                 <span class="label">precio</span>
-                <input type="text" name="precio">
+                <input type="number" name="precio">
             </div>
             <div class="form-group">
                 <span class="label">estrellas</span>
-                <input type="text" name="estrellas">
+                <input type="number" name="estrellas">
             </div>
             <div class="form-group">
                 <span class="label">material</span>
@@ -49,12 +56,13 @@ include("../php/conexion.php");
             </div>
             <div class="form-group">
                 <span class="label">stock</span>
-                <input type="text" name="stock">
+                <input type="number" name="stock">
             </div>
             <div class="form-group">
                 <input type="file" id="portada" style="border: none;" name="file">
             </div>
             <button type="button" class="btn"  name='add-product' onclick="add_products();">agregar</button>
+            <button type="reset" class="btn" style="background:orange !important" >reset</button>
             </div>
             <div class="right">
                 <div class="dats">

@@ -1,5 +1,11 @@
 <?php
 include("../php/conexion.php");
+session_start();
+if (isset($_SESSION['administrador'])) {
+} else {
+    header("location: ../../bloqueo.html");
+    die();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,10 +34,11 @@ include("../php/conexion.php");
             <th style="color:white">producto</th>
             <th style="color:white">fecha de cancelacion</th>
             <th style="color:white">telefono</th>
+            <th style="color:white">cantidad</th>
         </thead>
         <tbody>
         <?php
-                $consulta = "SELECT c.name, c.last_name, p.name, pd.fecha_pedido, c.telefono from pedido pd, client c, products p where pd.id_user = c.id and pd.id_products=p.id and pd.estatus_pedido=2 group by pd.fecha_pedido;";
+                $consulta = "SELECT c.name, c.last_name, p.name, pd.fecha_pedido, c.telefono, count(c.name) as cantidad from pedido pd, client c, products p where pd.id_user = c.id and pd.id_products=p.id and pd.estatus_pedido=2 group by pd.fecha_pedido;";
 
                 $query = mysqli_query($conection, $consulta) or die ("errrrrrrr");
         
@@ -43,6 +50,7 @@ include("../php/conexion.php");
                 <td><?php echo $mostrar[2]?></td>
                 <td><?php echo $mostrar[3]?></td>
                 <td><?php echo $mostrar[4]?></td>
+                <td><?php echo $mostrar[5]?></td>
 
             </tr>
     
@@ -60,12 +68,13 @@ include("../php/conexion.php");
             <th style="color:white">nombres</th>
             <th style="color:white">apellidos</th>
             <th style="color:white">producto</th>
-            <th style="color:white">fecha de cancelacion</th>
+            <th style="color:white">fecha de venta</th>
             <th style="color:white">telefono</th>
+            <th style="color:white">cantidad</th>
         </thead>
         <tbody>
         <?php
-                $consulta = "SELECT c.name, c.last_name, p.name, pd.fecha_pedido, c.telefono from pedido pd, client c, products p where pd.id_user = c.id and pd.id_products=p.id and pd.estatus_pedido=3 group by pd.fecha_pedido;";
+                $consulta = "SELECT c.name, c.last_name, p.name, pd.fecha_pedido, c.telefono, count(c.name) as cantidad from pedido pd, client c, products p where pd.id_user = c.id and pd.id_products=p.id and pd.estatus_pedido=3 group by pd.fecha_pedido;";
 
                 $query = mysqli_query($conection, $consulta) or die ("errrrrrrr");
         
@@ -77,7 +86,7 @@ include("../php/conexion.php");
                 <td><?php echo $mostrar[2]?></td>
                 <td><?php echo $mostrar[3]?></td>
                 <td><?php echo $mostrar[4]?></td>
-
+                <td><?php echo $mostrar[5]?></td>
             </tr>
     
             <?php 

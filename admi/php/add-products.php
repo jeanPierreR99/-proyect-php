@@ -3,7 +3,7 @@ include("conexion.php");
 
     $Pnombre = $_FILES['file']['name'];
     $Pruta = $_FILES['file']['tmp_name'];
-    $Pdestino ="../../../uploads/".$Pnombre;
+    $Pdestino ="../../uploads/".$Pnombre;
 
     if($Pnombre != ""){
 
@@ -16,11 +16,9 @@ include("conexion.php");
             $iten5 = $_POST['descripcion'];
             $iten6 = $_POST['stock'];
             
-            $insertar = "INSERT INTO  products VALUES (0,'$iten1','$iten2','$iten3','$iten4','$iten5','$Pnombre','$iten6')";
+            $insertar = "INSERT INTO  products VALUES (0,'$iten1',$iten2,$iten3,'$iten4','$iten5','$Pnombre',$iten6)";
 
             $query = mysqli_query($conection, $insertar) or die ("errrorrrrrrrrrrrrrrrrrrr datos");
-            
-            header("Location: ../pages/index.php");
         }
         else{
             echo "error";

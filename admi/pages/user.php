@@ -1,5 +1,11 @@
 <?php
 include("../php/conexion.php");
+session_start();
+if (isset($_SESSION['administrador'])) {
+} else {
+    header("location: ../../bloqueo.html");
+    die();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

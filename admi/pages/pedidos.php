@@ -1,6 +1,11 @@
 <?php
 include("../php/conexion.php");
-
+session_start();
+if (isset($_SESSION['administrador'])) {
+} else {
+    header("location: ../../bloqueo.html");
+    die();
+}
 
 $nom = "";
 $num = 0;
@@ -29,6 +34,7 @@ $cont=0;
     <title>Document</title>
 </head>
 <body>
+<div id="content-pedidos">
     <?php
     $consultap = "SELECT count(pd.id_products) as contador from pedido pd, client c where c.id = pd.id_user and pd.estatus_pedido=1 group by pd.fecha_pedido;";
     $queryp = mysqli_query($conection, $consultap) or die("errrorrrrrrrrrrrrrrrrrrr datos");
@@ -40,7 +46,6 @@ $cont=0;
 <div class="count" style="width:200px; height:100px; border:1px rgb(211, 211, 211) solid;position:relative">
                 <span style="position:Absolute; top:50%;left:50%;transform:translate(-50%,-50%); color:rgb(134, 132, 132"><?php echo $cont?> pendientes</span>
             </div>
-<div id="content-pedidos">
 
     <?php
             $consulta2 = "SELECT concat(c.name,' ',c.last_name) as nombre, pd.fecha_pedido, c.telefono, c.id from pedido pd, client c where c.id = pd.id_user and pd.estatus_pedido = 1 group by pd.fecha_pedido;";
@@ -59,7 +64,7 @@ $cont=0;
         <thead style="border: white; background:none !important;">
             <tr>
                 <th colspan="2" style="text-align:center;background: #006a47;color:white"><?php echo $nom . " (" . $hora . ")";?></th>
-                <th style="width:20px;height:20px;padding:0px;background: rgba(207, 205, 207, 0.972);"><button type="button"  style="background:none;border:none;width:100%;height:100%"><i class="bi bi-x-circle" style="font-size:20px; color: rgb(248, 7, 7)"></i></button></th>
+                <th style="width:20px;height:20px;padding:0px;background: rgba(207, 205, 207, 0.972);"><button type="button"  style="background:none;border:none;width:100%;height:100%" onclick="cancelar_pedido(<?php echo $id?>,'<?php echo $hora?>')"><i class="bi bi-x-circle" style="font-size:20px; color: rgb(248, 7, 7)"></i></button></th>
 
             </tr>
 
@@ -92,7 +97,7 @@ $cont=0;
         <tr>
             
             <td></td>
-            <td><button type="button" class="btn btn-success" onclick="aceptar_pedido(<?php echo $id?>);">aceptar</button></td>
+            <td><button type="button" class="btn btn-success" onclick="aceptar_pedido(<?php echo $id?>,'<?php echo $hora?>');">aceptar</button></td>
             <td></td>
         </tr>
         </tbody>
