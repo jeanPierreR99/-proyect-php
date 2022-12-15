@@ -27,7 +27,12 @@
   vertical-align: middle;
   border-radius: 4px;
 }
-
+aside{
+  background: rgb(16, 40, 51) !important;
+}
+.top{
+  background: #006a47;
+}
 .mdc-button::-moz-focus-inner {
   padding: 0;
   border: 0;
@@ -67,7 +72,9 @@
   font-size: 18px;
   vertical-align: top;
 }
-
+#content-body{
+  background: white !important;
+}
 [dir="rtl"] .mdc-button .mdc-button__icon, .mdc-button .mdc-button__icon[dir="rtl"] {
   /* @noflip */
   margin-left: 8px;

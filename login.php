@@ -4,21 +4,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Login</title>
+    <link rel="stylesheet" href="style-login.css">
+    <title>Document</title>
 </head>
 <body>
     <div class="inicio">
        <img src="2.jpeg" class="avatar">
        <h1>INICIO DE SESION</h1>
-       <form method="post" action="../admi/php/add-users.php">
+       <form>
         <p>Nombre de Usuario</p>
-        <input style=" color: rgb(214, 214, 214) !important" type="text" name="login_correo" placeholder="correo">
+        <input type="text" name="" placeholder="Nombre, correo o nùmero">
         <p>Contraseña</p>
-        <input style=" color: orange !important" type="password" name= "login_contraseña" placeholder="Contraseña">
-
-        <input type="submit" name="login" value="Inicio">
-     
+        <input type="password"name= "" placeholder="Contraseña">
+        <input type="submit" name="" value="Inicio">
+        <a href="#">¿Perdiste tu contraseña?</a><br>
         <a href="http://localhost/Webside_Store_Poryect_Web/Registro/registro.php">Registrate aquí</a>
        </form>
     </div>

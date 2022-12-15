@@ -549,10 +549,12 @@ footer .copyright{
 
 #pagination a {
     text-decoration: none;
-    background-color: #088178;
+    background-color: #088c836f;
+    /* background-color: none; */
     padding: 15px 20px;
     border-radius: 4px;
     color: #fff;
+    /* border: 1px solid #000; */
     font-weight: 600;
 }
 
