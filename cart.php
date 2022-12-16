@@ -1,3 +1,16 @@
+<?php
+session_start();
+$id=0;
+
+if (isset($_SESSION['cliente_id'])) {
+    $id=$_SESSION['cliente_id'];
+} else {
+    header("location: ./formulario/index.php");
+    die();
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +20,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
     <section id="header">
@@ -19,6 +33,7 @@
                 <li><a href="contact.php">Contacto</a></li>
                 <li id="lg-bag"><a class="active" href="cart.php"><i class="far fa-shopping-bag"></i></a></li>
                 <a href="#" id="close"><i class="far fa-times"></i></a>
+                <li><a href="./admi/php/cerrar-sesion.php">Cerrar</a></li>
             </ul>
         </div>
         <div id="mobile">
@@ -57,10 +72,9 @@
                     <td><strong id="total">$ 335</strong></td>
                 </tr>
             </table>
-            <button id="btn-send-data-cart" class="normal">Pedir</button>
+            <button id="btn-send-data-cart" class="normal" onclick="enviar_pedido(<?php echo $id?>);">Pedir</button>
         </div>
     </section>
-
 <?php include('footer.php');?>
 
     <script src="items-cart.js"></script>

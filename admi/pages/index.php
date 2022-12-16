@@ -3,7 +3,7 @@
 session_start();
 if (isset($_SESSION['administrador'])) {
 } else {
-    header("location: ../../bloqueo.html");
+    header("location: ../../formulario/index.php");
     die();
 }
 ?>

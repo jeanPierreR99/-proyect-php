@@ -15,11 +15,11 @@
             <ul id="navbar">
                 <li><a href="index.php">Inicio</a></li>
                 <li><a class="active" href="shop.php">Tienda</a></li>
-                <li><a href="blog.php">Blog</a></li>
                 <li><a href="about.php">Nosotros</a></li>
                 <li><a href="contact.php">Contacto</a></li>
                 <li id="lg-bag"><a href="cart.php"><i class="far fa-shopping-bag"></i></a></li>
                 <a href="#" id="close"><i class="far fa-times"></i></a>
+                <li><a href="./admi/php/cerrar-sesion.php">Cerrar</a></li>
             </ul>
         </div>
         <div id="mobile">

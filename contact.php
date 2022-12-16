@@ -19,6 +19,7 @@
                 <li><a class="active" href="contact.php">Contacto</a></li>
                 <li id="lg-bag"><a href="cart.php"><i class="far fa-shopping-bag"></i></a></li>
                 <a href="#" id="close"><i class="far fa-times"></i></a>
+                <li><a href="./admi/php/cerrar-sesion.php">Cerrar</a></li>
             </ul>
         </div>
         <div id="mobile">

@@ -66,7 +66,7 @@ if (isset($_POST['registrar'])) {
             $iten4 = $_POST['telefono'];
             $iten5 = $_POST['correo'];
             $iten6 = $_POST['contraseña'];
-            $id = 0;
+            $id2 = 0;
             
             if($iten1=="" || $iten2=="" || $iten3=="" || $iten4=="" || $iten5=="" || $iten6==""){
                 header("location: ../../registro/registro.php");
@@ -83,11 +83,11 @@ if (isset($_POST['registrar'])) {
 
 
                 while($mostrar = mysqli_fetch_array($query)){
-                    $id=$mostrar[0];
+                    $id2=$mostrar[0];
                 }
 
                 session_start();
-                $_SESSION['cliente_id']=$id;
+                $_SESSION['cliente_id']=$id2;
                 $_SESSION['cliente_correo']=$iten5;
                 $_SESSION['cliente_clave']=$iten6; 
 

@@ -48,7 +48,7 @@ $cont=0;
             </div>
 
     <?php
-            $consulta2 = "SELECT concat(c.name,' ',c.last_name) as nombre, pd.fecha_pedido, c.telefono, c.id from pedido pd, client c where c.id = pd.id_user and pd.estatus_pedido = 1 group by pd.fecha_pedido;";
+            $consulta2 = "SELECT concat(c.name,' ',c.last_name) as nombre, pd.fecha_pedido, c.telefono, c.id from pedido pd, client c where c.id = pd.id_user and pd.estatus_pedido = 1 group by pd.fecha_pedido order by pd.fecha_pedido desc;";
 
             $query2 = mysqli_query($conection, $consulta2) or die("errrorrrrrrrrrrrrrrrrrrr datos");
 

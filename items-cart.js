@@ -125,10 +125,48 @@ total.textContent = getSubtotal();
 
 
 let btnPedir = document.getElementById('btn-send-data-cart');
-btnPedir.addEventListener('click',async (e)=>{
-    e.preventDefault()
-    console.log("se enio")
-    let response = await fetch('http://localhost/dora/query/products/api-post.php',{
+
+ async function enviar_pedido(id_client){
+    var id_prod=0;
+
+    for(var i = 0; i< list.length; i++){
+      
+        id_prod = list[i].id;
+
+          await $.ajax({
+            type: "GET",
+            url: "./admi/php/cliente-pedido.php",
+            data: {id_client,id_prod},
+            success: function (r) {
+                if (r == 1) {
+                    alert("algoe sta fallando");
+                }
+                else {
+                    console.log(id_prod)
+               
+                }
+            }
+        }); 
+          
+    }
+    
+    $.ajax({
+        type: "GET",
+        url: "./admi/php/update_guardado.php",
+        data: {id_client},
+        success: function (r) {
+            if (r == 1) {
+                alert("algoe sta fallando");
+            }
+            else {
+                alert("pedido enviado");
+            }
+        }
+    });
+}
+  
+    /*console.log("se enio")
+    let response = await fetch('http://localhost/Webside_Store_Poryect_Web/query/products/api-post.php',{
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -138,5 +176,4 @@ btnPedir.addEventListener('click',async (e)=>{
     })
     let hola = await response.json();
     // console.log(response)
-    console.log(hola)
-})
+    console.log(hola)*/
