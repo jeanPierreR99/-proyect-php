@@ -1,3 +1,15 @@
+<?php
+require('./query/products/conecction.php');
+session_start();
+$id=0;
+
+if (isset($_SESSION['cliente_id'])) {
+    $id=$_SESSION['cliente_id'];
+} else {
+
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +19,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="style.css">  
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
 <body>
     <section id="header">
@@ -77,19 +90,36 @@
     </section>
 
     <section id="form-details">
-        <form action="">
+        <form method="post" enctype="multipart/form-data">
             <span>DEJA UN MENSAJE</span>
             <h2>NOS ENCANTA SABER DE TI</h2>
-            <textarea name="" id="" cols="30" rows="10" placeholder="Mensaje">
+            <textarea id="commit" name="" id="" cols="30" rows="10" placeholder="Mensaje">
             </textarea>
-            <button class="normal">Submit</button>
+            <button class="normal" onclick="send_commit(<?php echo $id?>);">Submit</button>
         </form>
 
-        <div class="people">
+        <div class="people" style="border: 1px #f6f6f6 solid; height:300px; width:300px; padding:20px;!important; overflow-y: auto !important">
             <div>
-                <img src="img/people/1.png" alt="">
-                <p><span>nombre usuario</span> Senior Marketing Manager <br> Phone: +51 929 398 600
-                <br>mensaje</p>
+                <p>
+                    <span style="font-family:'Spartan';">DICEN SOBRE NOSOTROS</span>
+                    <?php
+                $consulta = "SELECT c.address, f.description, f.date_time from foro f, client c where f.id_client = c.id order by f.date_time desc;";
+
+                $query = mysqli_query($conection, $consulta) or die ("errrrrrrr");
+        
+                while($mostrar = mysqli_fetch_array($query)){
+            ?>
+                     <?php echo $mostrar[0]?>
+                     <br>
+                     <?php echo $mostrar[1]?>
+                     <br>
+                     <?php echo $mostrar[2]?>
+                     <br>
+                     <br>
+                  
+                     
+<?php }?>
+                </p>
             </div>
             
         </div>
@@ -139,5 +169,6 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="items-cart.js"></script>
 </body>
 </html>

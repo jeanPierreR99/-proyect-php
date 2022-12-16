@@ -142,7 +142,6 @@ let btnPedir = document.getElementById('btn-send-data-cart');
                     alert("algoe sta fallando");
                 }
                 else {
-                    console.log(id_prod)
                
                 }
             }
@@ -177,3 +176,21 @@ let btnPedir = document.getElementById('btn-send-data-cart');
     let hola = await response.json();
     // console.log(response)
     console.log(hola)*/
+
+    function send_commit(id){
+        var commit = document.getElementById('commit').value
+
+        $.ajax({
+            type: "GET",
+            url: "./admi/php/send-commit.php",
+            data: {commit,id},
+            success: function (r) {
+                if (r == 1) {
+                    alert("algoe sta fallando");
+                }
+                else {
+                   
+                }
+            }
+        });
+    }

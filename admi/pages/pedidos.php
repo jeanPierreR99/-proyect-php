@@ -64,7 +64,7 @@ $cont=0;
         <thead style="border: white; background:none !important;">
             <tr>
                 <th colspan="2" style="text-align:center;background: #006a47;color:white"><?php echo $nom . " (" . $hora . ")";?></th>
-                <th style="width:20px;height:20px;padding:0px;background: rgba(207, 205, 207, 0.972);"><button type="button"  style="background:none;border:none;width:100%;height:100%" onclick="cancelar_pedido(<?php echo $id?>,'<?php echo $hora?>')"><i class="bi bi-x-circle" style="font-size:20px; color: rgb(248, 7, 7)"></i></button></th>
+                <th style="width:20px;height:20px;padding:0px;background: #b5f5a5;"><button type="button"  style="background:none;border:none;width:100%;height:100%" onclick="cancelar_pedido(<?php echo $id?>,'<?php echo $hora?>')"><i class="bi bi-x-circle" style="font-size:20px; color: rgb(248, 7, 7)"></i></button></th>
 
             </tr>
 
@@ -94,6 +94,25 @@ $cont=0;
             <td style="border:none !important"><?php echo $mostrar[2]?></td>
          </tr>
 <?php }?>
+
+<?php
+                            $consultaC = " SELECT sum(p.price) suma from pedido pd inner join client c on pd.id_user=c.id and pd.fecha_pedido = '$hora' inner join products p on pd.id_products=p.id;";
+
+                            $queryC = mysqli_query($conection, $consultaC) or die("1");
+
+                            while ($mostrarC = mysqli_fetch_array($queryC)) {
+                            ?>
+
+                                <tr>
+
+                                    <td style="color:orange; font-weight: 600;">TOTAL</td>
+                                    <td></td>
+                                    <td style="color:orange;font-weight: 600;"><?php echo $mostrarC['suma'] ?></td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
+                            
         <tr>
             
             <td></td>

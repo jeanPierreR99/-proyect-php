@@ -71,10 +71,11 @@ if (isset($_SESSION['administrador'])) {
             <th style="color:white">fecha de venta</th>
             <th style="color:white">telefono</th>
             <th style="color:white">cantidad</th>
+            <th style="color:white">precio</th>
         </thead>
         <tbody>
         <?php
-                $consulta = "SELECT c.name, c.last_name, p.name, pd.fecha_pedido, c.telefono, count(c.name) as cantidad from pedido pd, client c, products p where pd.id_user = c.id and pd.id_products=p.id and pd.estatus_pedido=3 group by pd.fecha_pedido;";
+                $consulta = "SELECT c.name, c.last_name, p.name, pd.fecha_pedido, c.telefono, count(c.name) as cantidad, sum(p.price) as costo from pedido pd, client c, products p where pd.id_user = c.id and pd.id_products=p.id and pd.estatus_pedido=3 group by pd.fecha_pedido;";
 
                 $query = mysqli_query($conection, $consulta) or die ("errrrrrrr");
         
@@ -87,6 +88,7 @@ if (isset($_SESSION['administrador'])) {
                 <td><?php echo $mostrar[3]?></td>
                 <td><?php echo $mostrar[4]?></td>
                 <td><?php echo $mostrar[5]?></td>
+                <td><?php echo $mostrar[6]?></td>
             </tr>
     
             <?php 

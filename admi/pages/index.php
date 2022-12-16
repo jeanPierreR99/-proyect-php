@@ -76,12 +76,6 @@ if (isset($_SESSION['administrador'])) {
                 estado de ventas
               </a>
             </div>
-            <div class="mdc-list-item mdc-drawer-item">
-              <a class="mdc-drawer-link" id="iten5">
-                <i class="material-icons mdc-list-item__start-detail mdc-drawer-item-icon" aria-hidden="true">home</i>
-                registros
-              </a>
-            </div>
           </nav>
         </div>
         <div class="profile-actions">
@@ -216,24 +210,6 @@ if (isset($_SESSION['administrador'])) {
 
        });
 
-      });
-      $('#iten5').click(function () {
-        $.ajax({
-        url:'./sd.php',   
-        beforeSend:function(){
-          $('#content-body').html("cargando...");
-          $('#iten5').addClass('top');
-        $('#iten1').removeClass('top');
-        $('#iten2').removeClass('top');
-        $('#iten3').removeClass('top');
-        $('#iten4').removeClass('top');
-        },
-        success:function(data){
-          $('#content-body').html(data);
-          $('#table-cancelsssados').DataTable();
-        }
-
-       });
       });
 
     })

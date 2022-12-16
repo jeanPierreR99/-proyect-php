@@ -11,13 +11,47 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
     <title>Registro</title>
+
+    <style>
+        #registro a{
+    color: rgb(250, 246, 44);
+    font-size: 15px;
+}
+#registro input[type="submit"]{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #fb2525;
+    color: #fff;
+    font-size: 18PX;
+    border-radius: 20px;
+}
+#registro input[type="Submit"]:hover{
+    cursor: pointer;
+    background: #ffc107;
+    color: #000;
+}
+#registro a{
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 20px;
+    color: darkgrey;
+
+}
+#registro a:hover{
+    color: #ffc107;
+
+}
+#registro label{
+    font-size:15px;
+}
+    </style>
 </head>
 
 <body>
     <div class="main">
     <div class="registro">
         <h2>Registrar</h2>
-        
         <form id="registro" method="post" action="../admi/php/add-users.php">
         <label for="Nombre">DNI</label>
             <br>
@@ -49,9 +83,11 @@
             <br>
             <input style="margin-bottom:10px; border-bottom:1px white solid !important; color: rgb(214, 214, 214) !important" type="password" name="contraseña" class="name" style="color:orange">
             <br>
-            
-            <div>
-            <button  class="btn btn-warning" style="margin-bottom:20px; color:white !important;" type="submit" name="registrar" value="crear" id="submit" class="formulario__btn">Registrar</button>
+            <a href="../formulario/index.php">ya tengo una cuenta</a>
+            <br>
+            <br>
+            <div style="width:100%; display:flex;justify-content: center">
+            <input type="submit" name="registrar" value="Registrar" id="submit" class="formulario__btn">
 
         </div>
         </form>
