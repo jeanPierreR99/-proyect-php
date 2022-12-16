@@ -42,13 +42,7 @@
                 </tr>
             </thead>  
             <tbody id="rows-cart-storage">
-                <!-- <tr>
-                    <td><i class="far fa-times-circle"><a href="#"></a></i></td>
-                    <td><img src="img/products/f1.jpg" alt=""></td>
-                    <td>Cartoon Astronaut T-Shirts</td>
-                    <td>$118.19</td>
-                    <td>$118.19</td>
-                </tr> -->
+               
             </tbody>
         </table>
     </section>

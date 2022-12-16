@@ -102,9 +102,8 @@ function createEventsDeleteTable(){
             localStorage.setItem("carrito",JSON.stringify(list))
             createListTable()
             createEventsDeleteTable();
-        //   dropTR[i].remove
-        //   positionDrop = i;
-            console.log(positionDrop)
+            total.textContent = getSubtotal();
+            // console.log(positionDrop)
         });
     };
 }
