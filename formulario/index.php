@@ -19,7 +19,7 @@
 
         <input type="submit" name="login" value="Inicio">
      
-        <a href="http://localhost/Webside_Store_Poryect_Web/Registro/registro.php">Registrate aquí</a>
+        <a href="../Registro/registro.php">Registrate aquí</a>
        </form>
     </div>
 </body>

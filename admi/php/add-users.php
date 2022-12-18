@@ -16,7 +16,7 @@ if (isset($_POST['login'])) {
     }
     else{
 
-    $consulta = "SELECT * FROM client where address='$correo' and pass='$contraseña';";
+    $consulta = "SELECT id,name,last_name,dni,telefono,address,convert(aes_decrypt(unhex(pass),'$contraseña')using utf8) as clave,id_type_user,status_client FROM client where address='$correo';";
     $query = mysqli_query($conection, $consulta) or die("errrrrrrrrrr");
 
        while ($mostrar = mysqli_fetch_array($query)) {
@@ -74,7 +74,7 @@ if (isset($_POST['registrar'])) {
             }
             else{
            
-            $insertar = "INSERT INTO  client VALUES (0,'$iten2','$iten3','$iten1',$iten4,'$iten5','$iten6',1,1)";
+            $insertar = "INSERT INTO  client VALUES (0,'$iten2','$iten3','$iten1',$iten4,'$iten5',hex(aes_encrypt('$iten6','$iten6')),1,1)";
 
             $query = mysqli_query($conection, $insertar) or die ( "error");
             
